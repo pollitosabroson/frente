@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+	<h1>Hola {% if user.is_active %}{{ user.first_name }} 
+		<a href="{% url 'url_logout' %}">Salir</a>
+		{% endif %}
+	<ul>
+		<li><a href="{%url 'url_registro'%}">Crear un usuario</a></li>
+		<li><a href="{%url 'url_registrocupon'%}">Crear un cupón</a></li>
+		<li><a href="{%url 'url_registrofrente'%}">link muestra para registro de usuario</a></li>
+	</ul>
+{% endblock %}

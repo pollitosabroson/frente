@@ -1,0 +1,15 @@
+ul li {
+	color: 000;
+	display: inline-block;
+	list-style: none;
+	width: 30%;
+}
+a{
+	text-decoration: none;
+	color: 000;
+}
+.formularios{
+	margin-left: 50px;
+	min-height: 50px;
+	width: 90%;
+}
