@@ -1,1 +1,1 @@
-web: gunicorn frente.wsgi 
+web: gunicorn app.wsgi 
