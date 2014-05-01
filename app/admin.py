@@ -7,7 +7,7 @@ class RutaAdmin(admin.ModelAdmin):
 admin.site.register(Ruta, RutaAdmin)
 
 class RepartidorAdmin(admin.ModelAdmin):
-	list_display = ['nombre']
+	list_display = ['nombre', 'apellido_Paterno']
 	search_fields = ['nombre','rutas']
 admin.site.register(Repartidor, RepartidorAdmin)
 

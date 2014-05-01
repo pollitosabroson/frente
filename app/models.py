@@ -18,7 +18,18 @@ class Colonia(models.Model):
 	def __unicode__(self):
 		return u'%s' % self.descripcion_Colonia
 
+class Delegacion_frente(models.Model):
+	descripcion_Delegacion = models.CharField(max_length=50)
 
+	def __unicode__(self):
+		return u'%s' % self.descripcion_Delegacion
+
+class Colonia_frente(models.Model):
+	descripcion_Colonia = models.CharField(max_length=100)
+	delegacion = models.ForeignKey(Delegacion)
+
+	def __unicode__(self):
+		return u'%s' % self.descripcion_Colonia
 
 class Ruta(models.Model):
 	numero_Ruta = models.IntegerField()
@@ -30,8 +41,8 @@ class Ruta(models.Model):
 
 class Repartidor(models.Model):
 	nombre = models.CharField(max_length=50)
-	apellido_Materno = models.CharField(max_length=50)
 	apellido_Paterno = models.CharField(max_length=50)
+	apellido_Materno = models.CharField(max_length=50)
 	rutas = models.ManyToManyField(Ruta)
 	created = models.DateTimeField(auto_now_add=True)
 
@@ -89,7 +100,7 @@ class Empresa(models.Model):
 	nombreEmpresa = models.CharField(max_length=100)
 	calle = models.CharField(max_length=100)
 	numero_Exterior = models.IntegerField()
-	numero_Interior = models.IntegerField(null=True)
+	numero_Interior = models.CharField(max_length=50,null=True)
 	Colonia = models.ForeignKey(Colonia)
 	delegacion = models.ForeignKey(Delegacion)
 	rutas = models.ManyToManyField(Ruta)
@@ -128,9 +139,9 @@ class ClienteFrente(models.Model):
 	mail = models.EmailField(max_length=75)
 	calle = models.CharField(max_length=100)
 	numero_Exterior = models.IntegerField()
-	numero_Interior = models.IntegerField(null=True)
-	Colonia = models.ForeignKey(Colonia)
-	delegacion = models.ForeignKey(Delegacion)
+	numero_Interior = models.CharField(max_length=50, null=True)
+	Colonia = models.ForeignKey(Colonia_frente)
+	delegacion = models.ForeignKey(Delegacion_frente)
 	rutas = models.ManyToManyField(Ruta)
 	cupon = models.ForeignKey(Cupon, null=True)
 	categoria = models.ForeignKey(Categoria, null=True)
