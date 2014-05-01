@@ -39,6 +39,16 @@ class ColoniaAdmin(admin.ModelAdmin):
 	list_filter =['descripcion_Colonia']
 admin.site.register(Colonia,ColoniaAdmin)
 
+class DelegacionFrenteAdmin(admin.ModelAdmin):
+	list_display = ['descripcion_Delegacion']
+	list_filter =['descripcion_Delegacion']
+admin.site.register(Delegacion_frente,DelegacionAdmin)
+
+class ColoniafrenteAdmin(admin.ModelAdmin):
+	list_display = ['descripcion_Colonia']
+	list_filter =['descripcion_Colonia']
+admin.site.register(Colonia_frente,ColoniaAdmin)
+
 class CategoriaAdmin(admin.ModelAdmin):
 	list_display = ['descripcion_Categoria']
 	list_filter =['descripcion_Categoria']
