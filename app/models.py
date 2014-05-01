@@ -20,6 +20,7 @@ class Colonia(models.Model):
 
 class Delegacion_frente(models.Model):
 	descripcion_Delegacion = models.CharField(max_length=50)
+	zona = models.CharField(max_length=100)
 
 	def __unicode__(self):
 		return u'%s' % self.descripcion_Delegacion
@@ -27,7 +28,6 @@ class Delegacion_frente(models.Model):
 class Colonia_frente(models.Model):
 	descripcion_Colonia = models.CharField(max_length=100)
 	delegacion = models.ForeignKey(Delegacion)
-	zona = models.CharField(max_length=100)
 
 	def __unicode__(self):
 		return u'%s' % self.descripcion_Colonia
