@@ -26,6 +26,7 @@ admin.site.register(Empresa, EmpresaAdmin)
 class ClienteFrenteAdmin(admin.ModelAdmin):
 	list_display = ['nombre',]
 	list_filter = ['created']
+	fields = ('nombre','apellido_Paterno', 'apellido_Materno','mail', 'calle', 'numero_Exterior', 'numero_Interior', 'Colonia', 'delegacion')
 	search_fields =['nombre','created','mail','calle','delegacion','ciudad','colonia','created','subcategoria1','subcategoria2','subcategoria3']
 admin.site.register(ClienteFrente, ClienteFrenteAdmin)
 

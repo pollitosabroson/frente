@@ -20,14 +20,13 @@ class Colonia(models.Model):
 
 class Delegacion_frente(models.Model):
 	descripcion_Delegacion = models.CharField(max_length=50)
-	zona = models.CharField(max_length=100)
 
 	def __unicode__(self):
 		return u'%s' % self.descripcion_Delegacion
 
 class Colonia_frente(models.Model):
 	descripcion_Colonia = models.CharField(max_length=100)
-	delegacion = models.ForeignKey(Delegacion)
+	delegacion = models.ForeignKey(Delegacion_frente)
 
 	def __unicode__(self):
 		return u'%s' % self.descripcion_Colonia
@@ -133,20 +132,21 @@ class Cuponera(models.Model):
 	cupon = models.ForeignKey(Cupon)
 
 class ClienteFrente(models.Model):
-	nombre = models.CharField(max_length=50)
-	apellido_Materno = models.CharField(max_length=50)
-	apellido_Paterno = models.CharField(max_length=50)
-	telefono = models.IntegerField(max_length=10, unique=True, validators=[RegexValidator(regex='^\d{10}$', message='Debe de ser 10 digitos', code='Invalid number')])
+	nombre = models.CharField(max_length=100)
+	apellido_Materno = models.CharField(max_length=100, null=True)
+	apellido_Paterno = models.CharField(max_length=100, null=True)
+	telefono = models.IntegerField(max_length=15, null=True)
 	mail = models.EmailField(max_length=75)
 	calle = models.CharField(max_length=100)
-	numero_Exterior = models.IntegerField()
+	numero_Exterior = models.IntegerField(max_length=10000)
 	numero_Interior = models.CharField(max_length=50, null=True)
 	Colonia = models.ForeignKey(Colonia_frente)
 	delegacion = models.ForeignKey(Delegacion_frente)
-	rutas = models.ManyToManyField(Ruta)
+	rutas = models.ManyToManyField(Ruta, null=True)
 	cupon = models.ForeignKey(Cupon, null=True)
 	categoria = models.ForeignKey(Categoria, null=True)
 	subcategoria1 = models.ForeignKey(Subcategoria1, null=True)
 	subcategoria2 = models.ForeignKey(Subcategoria2, null=True)
 	subcategoria3 = models.ForeignKey(Subcategoria3, null=True)
 	created = models.DateTimeField(auto_now_add=True)
+# , validators=[RegexValidator(regex='^\d{10}$', message='Debe de ser 10 digitos', code='Invalid number')]
