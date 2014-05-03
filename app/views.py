@@ -57,7 +57,7 @@ def user_register(request):
     else:
         form = UserRegisterForm()
         ctx = {"form":form, "mensaje":""}
-        return render_to_response("login.html",ctx, context_instance=RequestContext(request))
+        return render_to_response("register.html",ctx, context_instance=RequestContext(request))
 
 def register_cliente(request):
     if request.method == "POST":

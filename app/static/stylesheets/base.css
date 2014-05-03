@@ -13,3 +13,40 @@ a{
 	min-height: 50px;
 	width: 90%;
 }
+/*Login*/
+.login{
+	height: 250px;
+	margin: auto;
+	width: 280px;
+}
+.login .btn-login{
+	float: right;
+}
+
+/* Registro de usuarios*/
+.register-form{
+	margin: auto;
+	position: relative;
+	top: 40px;
+	width: 60%;
+}
+/* Cupones */
+.cupones-form{
+	margin: auto;
+	position: relative;
+	top: 40px;
+	width: 60%;
+}
+
+/* registro frente */
+.clientes-frente-resgistro{
+	margin: auto;
+	position: relative;
+	top: 40px;
+	width: 100%;
+}
+.clientes-frente-resgistro .form-group{
+	display: inline-block;
+	margin-right: 5%;
+	width: 40%;
+}

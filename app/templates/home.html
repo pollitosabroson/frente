@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
 	<h1>Hola {% if user.is_active %}{{ user.first_name }} 
 		<a href="{% url 'url_logout' %}">Salir</a>
 		{% endif %}

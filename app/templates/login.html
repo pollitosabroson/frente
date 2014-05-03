@@ -1,9 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
-	<h1>Formulario de Login</h1>
-	<form action="." method="POST">
-		{% csrf_token %}
-		{{ form.as_p}}
-		<input type="submit" value="Login" /> {{mensaje}}
-	</form>
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+	<div class="login">
+		<h1>Iniciar sesion</h1>
+		<form action="." method="POST" class="form">
+			{% csrf_token %}
+			{% bootstrap_form form %}
+			{% buttons %}
+			<input type="submit" value="Login" class="btn-login btn btn-primary"/> {{mensaje}}
+			 {% endbuttons %}
+		</form>
+	</div>
 {% endblock %}
