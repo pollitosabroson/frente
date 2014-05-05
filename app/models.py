@@ -3,6 +3,7 @@ from geoposition.fields import GeopositionField
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
+from django.db.models import Q
 
 # Create your models here.
 class Delegacion(models.Model):
@@ -120,7 +121,7 @@ class Cupon(models.Model):
 	duracion = models.CharField(max_length=50)
 	activo = models.BooleanField(default=True)
 	fechafinal = models.DateTimeField(null=True)
-	usuariogen = models.ForeignKey(User)
+	usuariogen = models.ForeignKey(User, limit_choices_to=Q( groups__name = 'PR'))
 	created = models.DateTimeField(auto_now_add=True)
 	# usuario = models.ForeignKey(ClienteFrente, null=True)
 	def __unicode__(self):

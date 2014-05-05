@@ -9,7 +9,6 @@ import random
 
 @login_required(login_url='/accounts/login/')
 def home(request):
-    print request.user.groups.filter(name='Frente').count() >= 1
     if request.user:
         if request.user.groups.filter(name='Frente').count() >= 1:
             return redirect('frente')
@@ -17,7 +16,7 @@ def home(request):
             return redirect('masxmas')
         elif request.user.groups.filter(name='PR').count() >= 1:
             return redirect('pr')
-        elif request.user.groups.filter(name='distribucion').count() >= 1:
+        elif request.user.groups.filter(name='Distribucion').count() >= 1:
             return redirect('distribucion')
     else:
         template = "home.html"
@@ -57,7 +56,7 @@ def user_register(request):
             form = UserRegisterForm(request.POST)
             if form.is_valid:
                 form.save()
-                return HttpResponse('User created succcessfully.')
+                return HttpResponseRedirect('/frente')
         else:
             form = UserRegisterForm()
         context = {}
@@ -147,6 +146,7 @@ def register_repartidor(request):
         return render(request, 'registerempresa.html', {'form': form})
 
 def register_cupon(request):
+    print "entro"
     startdate = datetime.today()
     enddate= startdate + timedelta(90)
     code = ''.join([random.choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') for x in range(4)])
@@ -155,18 +155,19 @@ def register_cupon(request):
         form = CreateCupon(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/frente')
         else:
             form = CreateCupon()
         context = {}
         context.update(csrf(request))
         context['form'] = form
         #Pass the context to a template
-        return render_to_response('cupones.html', context)
+        return render_to_response('frente/cupones.html', context)
     else:
-        return render(request, 'cupones.html', {'form': form})
+        return render(request, 'frente/cupones.html', {'form': form})
 
 def register_frente(request):
+    print "entro"
     form = CreateClienteFrente()
     if request.method == "POST":
         form = CreateClienteFrente(request.POST)
@@ -185,7 +186,24 @@ def register_frente(request):
         context.update(csrf(request))
         context['form'] = form
         #Pass the context to a template
-        return render_to_response('frenteregistro.html', context)
+        return render_to_response('frente/frenteregistro.html', context)
     else:
         print "porque perros no entra ultimo"
-        return render(request, 'frenteregistro.html', {'form': form})
+        return render(request, 'frente/frenteregistro.html', {'form': form})
+
+def frente(request):
+    print "entro frente"
+    template = "frente/frente.html"
+    return render_to_response(template, context_instance=RequestContext(request))
+
+def masxmas(request):
+    template = "frente.html"
+    return render_to_response(template, context_instance=RequestContext(request))
+
+def pr(request):
+    template = "frente.html"
+    return render_to_response(template, context_instance=RequestContext(request))
+
+def distribucion(request):
+    template = "frente.html"
+    return render_to_response(template, context_instance=RequestContext(request))
