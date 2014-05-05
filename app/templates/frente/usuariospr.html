@@ -1,0 +1,7 @@
+<ul>
+	{% for usuario in usuarios %}
+	<li>
+		<a href="/frente/usuarios/edit/{{usuario.id}}">{{ usuario }}</a>
+	</li>
+	{% endfor%}
+</ul>

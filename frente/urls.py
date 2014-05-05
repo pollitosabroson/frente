@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^register/repartidor/$', 'app.views.register_repartidor', name="url_registrorepartidor"),
     url(r'^frente/suscripcion/$', 'app.views.register_frente', name="url_registrofrente"),
     url(r'^register/cupon/$', 'app.views.register_cupon', name="url_registrocupon"),
-    url(r'^frente/usuarios/$', 'app.views.frente_usuarios', name="url_registrocupon"),
+    url(r'^frente/usuarios/$', 'app.views.frente_usuarios', name="url_frenteusuarios"),
+    url(r'^frente/usuarios/edit/(?P<id>[0-9]+)$', 'app.views.edit_frenteusuarios', name="url_frenteusuarios"),
 
 )

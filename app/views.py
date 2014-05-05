@@ -51,11 +51,12 @@ def user_logout(request):
 
 # User Register View
 def user_register(request):
-    if request.user.is_anonymous():
+    if request.user:
         if request.method == 'POST':
             form = UserRegisterForm(request.POST)
             if form.is_valid:
-                form.save()
+                user = form.save()
+                user.groups.add(Group.objects.get(name='PR'))
                 return HttpResponseRedirect('/frente')
         else:
             form = UserRegisterForm()
@@ -188,7 +189,6 @@ def register_frente(request):
         #Pass the context to a template
         return render_to_response('frente/frenteregistro.html', context)
     else:
-        print "porque perros no entra ultimo"
         return render(request, 'frente/frenteregistro.html', {'form': form})
 
 def frente(request):
@@ -207,3 +207,41 @@ def pr(request):
 def distribucion(request):
     template = "frente.html"
     return render_to_response(template, context_instance=RequestContext(request))
+
+def frente_usuarios(request):
+    usuarios = User.objects.filter(groups__name='PR')
+    print usuarios
+    return render_to_response("frente/usuariospr.html",{'usuarios': usuarios}, context_instance=RequestContext(request))
+
+def edit_frenteusuarios(request, id):
+    datos = get_object_or_404(User, pk=id)
+    cupons = Cupon.objects.filter(usuariogen = id)
+    print cupons
+    if not cupons:
+        cupones = "Aun no tiene cupon asignado"
+        return render_to_response("frente/edituser.html",{'datos': datos, 'cupones': cupones}, context_instance=RequestContext(request))
+    else:
+        print "Entro abajo"
+        cupons = Cupon.objects.filter(usuariogen = id)
+        cupones = cupons.get(activo = True)
+        return render_to_response("frente/edituser.html",{'datos': datos, 'cupones': cupones}, context_instance=RequestContext(request))
+
+def update_cupon(request):
+    startdate = datetime.today()
+    enddate= startdate + timedelta(90)
+    code = ''.join([random.choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') for x in range(4)])
+    form = CreateCupon(initial={'cupon': code, 'fechafinal': enddate})
+    if request.method == "POST":
+        form = CreateCupon(request.POS, instance=request.cuponT)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/frente')
+        else:
+            form = CreateCupon()
+        context = {}
+        context.update(csrf(request))
+        context['form'] = form
+        #Pass the context to a template
+        return render_to_response('frente/cupones.html', context)
+    else:
+        return render(request, 'frente/cupones.html', {'form': form})
