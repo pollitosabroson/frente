@@ -13,12 +13,12 @@ def home(request):
     if request.user:
         if request.user.groups.filter(name='Frente').count() >= 1:
             return redirect('frente')
-    #     elif request.user.groups.filter(name='MasxMas').count() >= 1:
-    #         return redirect('home')
-    #     elif request.user.groups.filter(name='PR').count() >= 1:
-    #         return redirect('home')
-    #     elif request.user.groups.filter(name='distribucion').count() >= 1:
-    #         return redirect('home')
+        elif request.user.groups.filter(name='MasxMas').count() >= 1:
+            return redirect('masxmas')
+        elif request.user.groups.filter(name='PR').count() >= 1:
+            return redirect('pr')
+        elif request.user.groups.filter(name='distribucion').count() >= 1:
+            return redirect('distribucion')
     else:
         template = "home.html"
         return render_to_response(template, context_instance=RequestContext(request))

@@ -152,6 +152,7 @@ class Migration(SchemaMigration):
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('cupon', self.gf('django.db.models.fields.CharField')(unique=True, max_length=20)),
             ('duracion', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('activo', self.gf('django.db.models.fields.BooleanField')(default=True)),
             ('fechafinal', self.gf('django.db.models.fields.DateTimeField')(null=True)),
             ('usuariogen', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
@@ -318,6 +319,7 @@ class Migration(SchemaMigration):
         },
         u'app.cupon': {
             'Meta': {'object_name': 'Cupon'},
+            'activo': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'cupon': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '20'}),
             'duracion': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
