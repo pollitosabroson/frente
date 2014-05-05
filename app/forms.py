@@ -51,4 +51,4 @@ class CreateClienteFrente(forms.ModelForm):
 
 	class Meta:
 		model = ClienteFrente
-		fields = ('nombre','apellido_Paterno','apellido_Materno','telefono','mail','calle','numero_Exterior','numero_Interior','delegacion','Colonia')
+		fields = ('nombre','apellido_Paterno','apellido_Materno', 'cumpleanos','telefono','mail','calle','numero_Exterior','numero_Interior','delegacion','Colonia')

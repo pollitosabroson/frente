@@ -137,6 +137,7 @@ class ClienteFrente(models.Model):
 	nombre = models.CharField(max_length=100)
 	apellido_Materno = models.CharField(max_length=100, null=True)
 	apellido_Paterno = models.CharField(max_length=100, null=True)
+	cumpleanos = models.DateField(auto_now=False)
 	telefono = models.IntegerField(max_length=15, null=True)
 	mail = models.EmailField(max_length=75)
 	calle = models.CharField(max_length=100)
