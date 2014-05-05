@@ -9,8 +9,19 @@ import random
 
 @login_required(login_url='/accounts/login/')
 def home(request):
-	template = "home.html"
-	return render_to_response(template, context_instance=RequestContext(request))
+    print request.user.groups.filter(name='Frente').count() >= 1
+    if request.user:
+        if request.user.groups.filter(name='Frente').count() >= 1:
+            return redirect('frente')
+    #     elif request.user.groups.filter(name='MasxMas').count() >= 1:
+    #         return redirect('home')
+    #     elif request.user.groups.filter(name='PR').count() >= 1:
+    #         return redirect('home')
+    #     elif request.user.groups.filter(name='distribucion').count() >= 1:
+    #         return redirect('home')
+    else:
+        template = "home.html"
+        return render_to_response(template, context_instance=RequestContext(request))
 
 def user_login(request):
     form = LoginForm()
