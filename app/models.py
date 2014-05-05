@@ -118,6 +118,7 @@ class Empresa(models.Model):
 class Cupon(models.Model):
 	cupon = models.CharField(max_length=20, unique=True)
 	duracion = models.CharField(max_length=50)
+	activo = models.BooleanField(default=True)
 	fechafinal = models.DateTimeField(null=True)
 	usuariogen = models.ForeignKey(User)
 	created = models.DateTimeField(auto_now_add=True)

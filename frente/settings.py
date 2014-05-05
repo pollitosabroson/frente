@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     "geoposition",
     'bootstrap3',
     'app',
+    'south',
 )
 
 MIDDLEWARE_CLASSES = (
