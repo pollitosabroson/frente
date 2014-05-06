@@ -1,0 +1,66 @@
+{% extends 'baseadmin.html' %}
+{% block content %}
+<div class="general-cliente">
+	<ul class = "cliente">
+		{% for cliente in clientes %}
+		<li>
+			<ul class = 'datos-cliente'>
+				<li class = 'col-lg-2'>
+					<h4>Nombre</h4>
+					<a href="/frente/clientes/edit/{{cliente.id}}">{{ cliente.nombre}}</a>
+				</li>
+				<li class = 'col-lg-2'>
+					<h4>Apellido Paterno</h4>
+					<p>{{cliente.apellido_Paterno}}</p>
+				</li>
+				<li class = 'col-lg-2'>
+					<h4>Apellido Materno</h4>
+					<p>{{cliente.apellido_Materno}}</p>
+				</li>
+				<li class = 'col-lg-2'>
+					<h4>Correo electronico</h4>
+					<p>{{cliente.mail}}</p>
+				</li>
+				<li class = 'col-lg-2'>
+					<h4>Cupon de Registro</h4>
+					<p>{{cliente.cupon}}</p>
+				</li>
+				<li class = 'col-lg-2'>
+					<h4>Direccion</h4>
+					<p>{{cliente.cumpleanos}}</p>
+				</li>
+				<li class = 'col-lg-2'>
+					<h4>Telefono</h4>
+					<p>{{cliente.telefono}}</p>
+				</li>
+				<li class = 'col-lg-2'>
+					<h4>Calle</h4>
+					<p>{{cliente.calle}}</p>
+				</li>
+				<li class = 'col-lg-2'>
+					<h4>Número Exterior</h4>
+					<p>{{cliente.numero_Exterior}}</p>
+				</li>
+				<li class = 'col-lg-2'>
+					<h4>Número Interior</h4>
+					<p>{{cliente.numero_Interior}}</p>
+				</li>
+				<li class = 'col-lg-2'>
+					<h4>Colonia</h4>
+					<p>{{cliente.Colonia}}</p>
+				</li>
+				<li class = 'col-lg-2'>
+					<h4>Delegación</h4>
+					<p>{{cliente.delegacion}}</p>
+				</li>
+				<li class = 'col-lg-2'>
+					<h4>Entrega</h4>
+					<p>{{cliente.entregas}}</p>
+				</li>
+				<a href="frente/clientes/edit/{{cliente.id}}" class=" editar-clientes btn btn-default">Editar</a>
+			</ul>
+		</li>
+		{% endfor%}
+	</ul>
+</div>
+{% endblock %}

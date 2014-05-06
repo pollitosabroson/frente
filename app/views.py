@@ -220,6 +220,11 @@ def frente_usuarios(request):
     print usuarios
     return render_to_response("frente/usuariospr.html",{'usuarios': usuarios}, context_instance=RequestContext(request))
 
+def frente_clientes(request):
+    clientes = ClienteFrente.objects.all()
+    print clientes
+    return render_to_response("frente/clientes.html",{'clientes': clientes}, context_instance=RequestContext(request))
+
 def edit_frenteusuarios(request, id):
     startdate = datetime.today()
     enddate= startdate + timedelta(90)

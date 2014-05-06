@@ -116,3 +116,39 @@ a{
 	margin-right: 50%;
 	width: 150px;
 }
+/* Clientes*/
+.general-cliente li{
+	min-height: 50px;
+	list-style: none;
+}
+.general-cliente li a, .general-cliente li p{
+	color: #000;
+	display: inline-block;
+	font-size: 18px;
+}
+.general-cliente .editar-clientes{
+	background: #FFCC33;
+	color: #fff;
+	font-size: 20px;
+	float: right;
+	margin-right: 10%;
+	width: 150px;
+}
+.general-cliente .cliente{
+	padding: 0px;
+}
+.datos-cliente li{
+	display: inline-block;
+	float: none;
+	height: 100px;
+	padding: 0px;
+	text-align: center;
+}
+.datos-cliente{
+	padding: 0px;
+}
+.datos-cliente h4{
+	color: #fff;
+	background: #000;
+	text-align: center;
+}

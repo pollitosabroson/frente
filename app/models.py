@@ -155,4 +155,7 @@ class ClienteFrente(models.Model):
 	subcategoria2 = models.ForeignKey(Subcategoria2, null=True)
 	subcategoria3 = models.ForeignKey(Subcategoria3, null=True)
 	created = models.DateTimeField(auto_now_add=True)
+
+	def __unicode__(self):
+		return u'%s' % self.cupon
 # , validators=[RegexValidator(regex='^\d{10}$', message='Debe de ser 10 digitos', code='Invalid number')]
