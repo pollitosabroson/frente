@@ -190,7 +190,7 @@ def register_frente(request):
                 ctx = {"form":form, "mensaje": "Cupon Invalido favor de comunicarte con tu proovedor por otro cupon"}
                 return render_to_response("login.html",ctx, context_instance=RequestContext(request))
         else:
-            print "porque perros no entra"
+            print " "
         context = {}
         context.update(csrf(request))
         context['form'] = form
