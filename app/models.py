@@ -1,6 +1,6 @@
 from django.db import models
 from geoposition.fields import GeopositionField
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.db.models import Q

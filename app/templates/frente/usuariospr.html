@@ -1,7 +1,10 @@
-<ul>
-	{% for usuario in usuarios %}
-	<li>
-		<a href="/frente/usuarios/edit/{{usuario.id}}">{{ usuario }}</a>
-	</li>
-	{% endfor%}
-</ul>
+{% extends 'base.html' %}
+{% block content %}
+	<ul>
+		{% for usuario in usuarios %}
+		<li>
+			<a href="/frente/usuarios/edit/{{usuario.id}}">{{ usuario }}</a>
+		</li>
+		{% endfor%}
+	</ul>
+{% endblock %}

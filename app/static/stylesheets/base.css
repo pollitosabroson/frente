@@ -1,7 +1,8 @@
 ul li {
-	color: 000;
+	color: 000px;
 	display: inline-block;
 	list-style: none;
+	min-height: 35px;
 	width: 30%;
 }
 a{

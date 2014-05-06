@@ -55,7 +55,7 @@ def user_register(request):
     if request.user:
         if request.method == 'POST':
             form = UserRegisterForm(request.POST)
-            if form.is_valid:
+            if form.is_valid():
                 user = form.save()
                 user.groups.add(Group.objects.get(name='PR'))
                 return HttpResponseRedirect('/frente')
@@ -200,7 +200,6 @@ def register_frente(request):
         return render(request, 'frente/frenteregistro.html', {'form': form})
 
 def frente(request):
-    print "entro frente"
     template = "frente/frente.html"
     return render_to_response(template, context_instance=RequestContext(request))
 
