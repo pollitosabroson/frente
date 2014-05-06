@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from app.models import *
+from django.conf import settings
 import random
 
 class UserRegisterForm(UserCreationForm):
@@ -45,10 +46,13 @@ class CreateCupon(forms.ModelForm):
 		model = Cupon
 		fields = ('usuariogen','cupon','fechafinal')
 			
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 class CreateClienteFrente(forms.ModelForm):
-	cupon = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Ingresa tu cupon'}))
-
 	class Meta:
 		model = ClienteFrente
-		fields = ('nombre','apellido_Paterno','apellido_Materno', 'cumpleanos','telefono','mail','calle','numero_Exterior','numero_Interior','delegacion','Colonia')
+		fields = ('nombre','apellido_Paterno','apellido_Materno', 'cumpleanos', 'telefono','mail','calle','numero_Exterior','numero_Interior','delegacion','Colonia','cupon','entregas')
+		widgets = {
+            'cumpleanos': DateInput()
+        }

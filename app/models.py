@@ -118,7 +118,7 @@ class Empresa(models.Model):
 
 class Cupon(models.Model):
 	cupon = models.CharField(max_length=20, unique=True)
-	duracion = models.CharField(max_length=50)
+	duracion = models.CharField(max_length=50, null=True, blank=True)
 	activo = models.BooleanField(default=True)
 	fechafinal = models.DateTimeField(null=True)
 	usuariogen = models.ForeignKey(User, limit_choices_to=Q( groups__name = 'PR'))
@@ -134,19 +134,22 @@ class Cuponera(models.Model):
 	cupon = models.ForeignKey(Cupon)
 
 class ClienteFrente(models.Model):
+	CHOICES=[('casa','Casa'),
+         ('caseta de vigilancia','Caseta de Vigilancia')]
 	nombre = models.CharField(max_length=100)
 	apellido_Materno = models.CharField(max_length=100, null=True)
-	apellido_Paterno = models.CharField(max_length=100, null=True)
+	apellido_Paterno = models.CharField(max_length=100, null=True, blank=True)
 	cumpleanos = models.DateField(auto_now=False)
-	telefono = models.IntegerField(max_length=15, null=True)
+	telefono = models.IntegerField(max_length=15, null=True, blank=True)
 	mail = models.EmailField(max_length=75)
 	calle = models.CharField(max_length=100)
 	numero_Exterior = models.IntegerField(max_length=10000)
-	numero_Interior = models.CharField(max_length=50, null=True)
+	numero_Interior = models.CharField(max_length=50, null=True,blank=True)
 	Colonia = models.ForeignKey(Colonia_frente)
 	delegacion = models.ForeignKey(Delegacion_frente)
+	entregas = models.CharField(max_length= 50, null=False, choices = CHOICES)
+	cupon = models.CharField(max_length= 4, null=True)
 	rutas = models.ManyToManyField(Ruta, null=True)
-	cupon = models.ForeignKey(Cupon, null=True)
 	categoria = models.ForeignKey(Categoria, null=True)
 	subcategoria1 = models.ForeignKey(Subcategoria1, null=True)
 	subcategoria2 = models.ForeignKey(Subcategoria2, null=True)

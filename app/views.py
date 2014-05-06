@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.context_processors import csrf
 from datetime import tzinfo, timedelta, datetime
+from django.utils import timezone
 from app.forms import *
 import random
 
@@ -168,17 +169,24 @@ def register_cupon(request):
         return render(request, 'frente/cupones.html', {'form': form})
 
 def register_frente(request):
-    print "entro"
     form = CreateClienteFrente()
     if request.method == "POST":
         form = CreateClienteFrente(request.POST)
         if form.is_valid():
             cuponvalid= form.cleaned_data['cupon']
-            cupon_valid = Cupon.objects.filter(cupon = cuponvalid).exists()
-            if cupon_valid  == True:
-                form.save()
-                return HttpResponse('Gracias por registrarte en Frente pronto empezaras recibir tu beneficios')
-            else:
+            try:
+                cupon_valid = Cupon.objects.get(cupon = cuponvalid) 
+                a = cupon_valid.fechafinal
+                b = timezone.now()
+                print a, b
+                if b < a:
+                    if cupon_valid.activo  == True:
+                        form.save()
+                        return HttpResponse('Gracias por registrarte en Frente pronto empezaras recibir tu beneficios')
+                    else:
+                        ctx = {"form":form, "mensaje": "Cupon Invalido favor de comunicarte con tu proovedor por otro cupon"}
+                        return render_to_response("login.html",ctx, context_instance=RequestContext(request))
+            except Cupon.DoesNotExist as e: 
                 ctx = {"form":form, "mensaje": "Cupon Invalido favor de comunicarte con tu proovedor por otro cupon"}
                 return render_to_response("login.html",ctx, context_instance=RequestContext(request))
         else:
