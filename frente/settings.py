@@ -90,3 +90,4 @@ DATE_INPUT_FORMATS = ('%d %B %Y', '%d %B, %Y',)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = "/opt/myenv/static/"
