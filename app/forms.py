@@ -54,5 +54,12 @@ class CreateClienteFrente(forms.ModelForm):
 		model = ClienteFrente
 		fields = ('nombre','apellido_Paterno','apellido_Materno', 'cumpleanos', 'telefono','mail','calle','numero_Exterior','numero_Interior','delegacion','Colonia','cupon','entregas')
 		widgets = {
-            'cumpleanos': DateInput()
+            'cumpleanos': DateInput(),
+            'entregas': forms.RadioSelect(),
         }
+
+class updateCupon(forms.ModelForm):
+
+	class Meta:
+		model = Cupon
+		fields = ('usuariogen','cupon','fechafinal')

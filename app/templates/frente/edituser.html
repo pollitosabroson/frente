@@ -1,11 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
 	<ul>
 		<li>
-			<p>Nombre del usuario</p>
-			<p>{{datos.username}}</p>
-			<p>Cupon actual</p>
-			<input type="text" value ='{{cupones}}'>
+			<form action="." method="POST" class="form">
+				{% csrf_token %}
+				{% bootstrap_form form %}
+				{% buttons %}
+				<input type="submit" value="Guardar Cupon" class="btn btn-success"/> {{mensaje}}
+				<a href="/frente" class="btn btn-danger " role="button">Cancelar</a>
+				{% endbuttons %}
+			</form>
+			<a href="" class="btn btn-success">Crear cupon</a>
 		</li>
+		<p>Cupones activos</p>
+		<p>{{cupons}}</p>
 	</ul>
 {% endblock %}

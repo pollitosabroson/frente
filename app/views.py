@@ -221,17 +221,34 @@ def frente_usuarios(request):
     return render_to_response("frente/usuariospr.html",{'usuarios': usuarios}, context_instance=RequestContext(request))
 
 def edit_frenteusuarios(request, id):
+    startdate = datetime.today()
+    enddate= startdate + timedelta(90)
+    code = ''.join([random.choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') for x in range(4)])
     datos = get_object_or_404(User, pk=id)
-    cupons = Cupon.objects.filter(usuariogen = id)
-    print cupons
-    if not cupons:
-        cupones = "Aun no tiene cupon asignado"
-        return render_to_response("frente/edituser.html",{'datos': datos, 'cupones': cupones}, context_instance=RequestContext(request))
-    else:
-        print "Entro abajo"
-        cupons = Cupon.objects.filter(usuariogen = id)
-        cupones = cupons.get(activo = True)
-        return render_to_response("frente/edituser.html",{'datos': datos, 'cupones': cupones}, context_instance=RequestContext(request))
+    try:
+        cupons = Cupon.objects.get(usuariogen = id)
+        if not cupons:
+            cupones = "No tiene cupones"
+        else:
+            cupones = cupons
+        form = updateCupon(initial={'cupon': code,'fechafinal': enddate, 'usuariogen': id})
+        if request.method == "POST":
+            form = updateCupon(request.POS, instance=request.cuponT)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect('/frente')
+            else:
+                form = CreateCupon()
+            context = {}
+            context.update(csrf(request))
+            context['form'] = form
+            return render_to_response('frente/cupones.html', context)
+        else:
+            form = updateCupon(initial={'cupon': code,'fechafinal': enddate, 'usuariogen': id})
+        return render(request, "frente/edituser.html",{'form': form,'datos': datos})
+    except Cupon.DoesNotExist as e: 
+        form = updateCupon(initial={'cupon': code,'fechafinal': enddate, 'usuariogen': id})
+        return render(request, "frente/edituser.html",{'form': form,'datos': datos})
 
 def update_cupon(request):
     startdate = datetime.today()
@@ -252,3 +269,8 @@ def update_cupon(request):
         return render_to_response('frente/cupones.html', context)
     else:
         return render(request, 'frente/cupones.html', {'form': form})
+
+def update_cupon(request):
+    code = ''.join([random.choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') for x in range(4)])
+    form = CreateCupon(initial={'cupon': code, 'fechafinal': enddate})
+    return render(request, 'frente/cupones.html', {'form': form})
