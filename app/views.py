@@ -65,11 +65,11 @@ def user_register(request):
         context.update(csrf(request))
         context['form'] = form
         #Pass the context to a template
-        return render_to_response('register.html', context)
+        return render_to_response('frente/register.html', context)
     else:
         form = UserRegisterForm()
         ctx = {"form":form, "mensaje":""}
-        return render_to_response("register.html",ctx, context_instance=RequestContext(request))
+        return render_to_response("frente/register.html",ctx, context_instance=RequestContext(request))
 
 def register_cliente(request):
     if request.method == "POST":
@@ -227,10 +227,6 @@ def edit_frenteusuarios(request, id):
     datos = get_object_or_404(User, pk=id)
     try:
         cupons = Cupon.objects.get(usuariogen = id)
-        if not cupons:
-            cupones = "No tiene cupones"
-        else:
-            cupones = cupons
         form = updateCupon(initial={'cupon': code,'fechafinal': enddate, 'usuariogen': id})
         if request.method == "POST":
             form = updateCupon(request.POS, instance=request.cuponT)

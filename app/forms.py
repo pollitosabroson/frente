@@ -52,13 +52,13 @@ class DateInput(forms.DateInput):
 class CreateClienteFrente(forms.ModelForm):
 	class Meta:
 		model = ClienteFrente
-		fields = ('nombre','apellido_Paterno','apellido_Materno', 'cumpleanos', 'telefono','mail','calle','numero_Exterior','numero_Interior','delegacion','Colonia','cupon','entregas')
+		fields = ('nombre','apellido_Paterno','apellido_Materno', 'cumpleanos', 'telefono','mail','calle','numero_Exterior','numero_Interior','delegacion','Colonia','entregas','cupon')
 		widgets = {
             'cumpleanos': DateInput(),
             'entregas': forms.RadioSelect(),
         }
 
-class updateCupon(forms.ModelForm):
+class updateCupon(ModelForm):
 
 	class Meta:
 		model = Cupon

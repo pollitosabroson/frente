@@ -1,10 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'baseadmin.html' %}
 {% block content %}
+<div class="general-user">
 	<ul>
 		{% for usuario in usuarios %}
 		<li>
 			<a href="/frente/usuarios/edit/{{usuario.id}}">{{ usuario }}</a>
+			<a href="/frente/usuarios/edit/{{usuario.id}}" class=" registrarfrente btn btn-default">Editar</a>
 		</li>
 		{% endfor%}
 	</ul>
+</div>
 {% endblock %}

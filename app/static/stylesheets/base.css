@@ -1,4 +1,4 @@
-ul li {
+.edit-user li {
 	color: 000px;
 	display: inline-block;
 	list-style: none;
@@ -41,13 +41,78 @@ a{
 
 /* registro frente */
 .clientes-frente-resgistro{
+	border-right: 1px dotted #000;
+	display: inline-block;
 	margin: auto;
 	position: relative;
 	top: 40px;
-	width: 100%;
+	vertical-align: top;
+	width: 69%
+}
+ .clientes-frente-resgistro .control-label{
+ 	display: inline;
 }
 .clientes-frente-resgistro .form-group{
 	display: inline-block;
 	margin-right: 5%;
-	width: 40%;
+	width: 100%;
+}
+.clientes-frente-resgistro .form-control{
+	display: inline-block;
+	float: right;
+	margin-right: 30px;
+	vertical-align: top;
+	width: 70%;
+}
+.clientes-frente-resgistro .suscripciones{
+	margin-top: 25px;
+}
+.formulario .ima{
+	margin-top: 25px;
+	text-align: center;
+}
+.info{
+	display: inline-block;
+	height: 500px;
+	width: 30%;
+}
+.form-group .registrarfrente{
+	background: #FFCC33;
+	color: #fff;
+	font-size: 20px;
+	margin-left: 40%;
+	width: 150px;
+}
+.clientes-frente-resgistro .datos{
+	border-bottom: 1px dotted #000;
+	margin-bottom: 45px;
+}
+.datos .form-user{
+	color: #FFCC33;
+	display: inline-block;
+	font-size: 20px;
+	margin-top: 8px;
+	margin-right: 12px;
+	vertical-align: top;
+}
+.datos h6{
+	display: inline-block;
+	font-size: 20px;
+	vertical-align: top;
+}
+.general-user li{
+	min-height: 50px;
+	list-style: none;
+}
+.general-user li a{
+	font-size: 18px;
+	color: #000;
+}
+.general-user .registrarfrente{
+	background: #FFCC33;
+	color: #fff;
+	font-size: 20px;
+	float: right;
+	margin-right: 50%;
+	width: 150px;
 }

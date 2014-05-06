@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     url(r'^distribucion/$', 'app.views.distribucion', name='distribucion'),
     url(r'^accounts/login/$', 'app.views.user_login', name="url_login"),		
     url(r'^accounts/logout/$', 'app.views.user_logout', name="url_logout"),
-    url(r'^accounts/register/$', 'app.views.user_register', name="url_registro"),
+    url(r'^frente/usuarionuevo/$', 'app.views.user_register', name="url_registro"),
     url(r'^masxmas/cliente/$', 'app.views.register_cliente', name="url_registrocliente"),
     url(r'^empresa/suscripcion/$', 'app.views.register_empresa', name="url_registroempresa"),
     url(r'^register/ruta/$', 'app.views.register_ruta', name="url_registroruta"),
@@ -24,5 +24,6 @@ urlpatterns = patterns('',
     url(r'^register/cupon/$', 'app.views.register_cupon', name="url_registrocupon"),
     url(r'^frente/usuarios/$', 'app.views.frente_usuarios', name="url_frenteusuarios"),
     url(r'^frente/usuarios/edit/(?P<id>[0-9]+)$', 'app.views.edit_frenteusuarios', name="url_frenteusuarios"),
+
 
 )

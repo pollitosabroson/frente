@@ -1,14 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'baseadmin.html' %}
 {% block content %}
 {% load bootstrap3 %}
 
 {# Load CSS and JavaScript #}
 
-{% bootstrap_css %}
 {% bootstrap_javascript %}
 
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
+<div class="edit-user">
 	<ul>
 		<li>
 			<form action="." method="POST" class="form">
@@ -24,4 +24,5 @@
 		<p>Cupones activos</p>
 		<p>{{cupons}}</p>
 	</ul>
+</div>
 {% endblock %}
