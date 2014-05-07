@@ -19,9 +19,6 @@ def home(request):
             return redirect('pr')
         elif request.user.groups.filter(name='Distribucion').count() >= 1:
             return redirect('distribucion')
-    else:
-        template = "home.html"
-        return render_to_response(template, context_instance=RequestContext(request))
 
 def user_login(request):
     form = LoginForm()
