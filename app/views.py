@@ -195,32 +195,38 @@ def register_frente(request):
         return render_to_response('frente/frenteregistro.html', context)
     else:
         return render(request, 'frente/frenteregistro.html', {'form': form})
-
+@login_required(login_url='/accounts/login/')
 def frente(request):
     template = "frente/frente.html"
     return render_to_response(template, context_instance=RequestContext(request))
 
+@login_required(login_url='/accounts/login/')
 def masxmas(request):
     template = "frente.html"
     return render_to_response(template, context_instance=RequestContext(request))
 
+@login_required(login_url='/accounts/login/')
 def pr(request):
     template = "frente.html"
     return render_to_response(template, context_instance=RequestContext(request))
 
+@login_required(login_url='/accounts/login/')
 def distribucion(request):
     template = "frente.html"
     return render_to_response(template, context_instance=RequestContext(request))
 
+@login_required(login_url='/accounts/login/')
 def frente_usuarios(request):
     usuarios = User.objects.filter(groups__name='PR')
     print usuarios
     return render_to_response("frente/usuariospr.html",{'usuarios': usuarios}, context_instance=RequestContext(request))
 
+@login_required(login_url='/accounts/login/')
 def frente_clientes(request):
     clientes = ClienteFrente.objects.all()
     return render_to_response("frente/clientes.html",{'clientes': clientes}, context_instance=RequestContext(request))
-
+    
+@login_required(login_url='/accounts/login/')
 def edit_frenteusuarios(request, id):
     startdate = datetime.today()
     enddate= startdate + timedelta(90)
