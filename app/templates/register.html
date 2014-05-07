@@ -1,18 +1,10 @@
 {% extends 'baseadmin.html' %}
 {% block content %}
-{% load bootstrap3 %}
-
-{# Load CSS and JavaScript #}
-
-{% bootstrap_javascript %}
-
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
 <div class="register-form">
 	<form action="." method="POST" class="form">
 		<h1>Crear nuevos usuario</h1>
 		{% csrf_token %}
-		{% bootstrap_form form %}
+		{% form.as_p %}
 		{% buttons %}
 		<input type="submit" value="Registrar" class="btn btn-success"/> {{mensaje}}
 		<a href="/frente" class="btn btn-danger " role="button">Cancelar</a>

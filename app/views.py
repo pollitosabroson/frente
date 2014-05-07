@@ -65,11 +65,11 @@ def user_register(request):
         context.update(csrf(request))
         context['form'] = form
         #Pass the context to a template
-        return render_to_response('frente/register.html', context)
+        return render_to_response('frente/registropr.html', context)
     else:
         form = UserRegisterForm()
-        ctx = {"form":form, "mensaje":""}
-        return render_to_response("frente/register.html",ctx, context_instance=RequestContext(request))
+    ctx = {"form":form, "mensaje":""}
+    return render_to_response("frente/registropr.html",ctx, context_instance=RequestContext(request))
 
 def register_cliente(request):
     if request.method == "POST":
@@ -222,7 +222,6 @@ def frente_usuarios(request):
 
 def frente_clientes(request):
     clientes = ClienteFrente.objects.all()
-    print clientes
     return render_to_response("frente/clientes.html",{'clientes': clientes}, context_instance=RequestContext(request))
 
 def edit_frenteusuarios(request, id):

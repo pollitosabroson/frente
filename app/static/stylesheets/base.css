@@ -138,6 +138,7 @@ a{
 	padding: 0px;
 }
 .datos-cliente li{
+	border-bottom: 1px solid #fff !important;
 	display: inline-block;
 	float: none;
 	height: 100px;
@@ -152,3 +153,6 @@ a{
 	background: #000;
 	text-align: center;
 }
+.cliente li{
+	border-bottom: 12px solid gray;
+} 
